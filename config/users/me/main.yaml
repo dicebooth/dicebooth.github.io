@@ -1,0 +1,15 @@
+meta:
+  title: "dicebooth"
+  description: "SCATTA. STAMPA. CONDIVIDI.\nSorridi, al resto ci pensiamo noi! 📸"
+  avatar: "https://scontent-fco2-1.cdninstagram.com/v/t51.82787-19/831532720_18031166027683912_1625745035510518143_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=101&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDI0LkMzIn0%3D&_nc_ohc=4chdb0exZacQ7kNvwFR0XtN&_nc_oc=AdrvgcmOx3ekiQ2nXydudg-S-xOoaeO9vI7mhrbqerdqkXhKhIPMVvATLbDJnYc1nMRNFapwRpSaAR94m2JzVw_E&_nc_zt=24&_nc_ht=scontent-fco2-1.cdninstagram.com&_nc_gid=zsv79Ju2qn-KGSU1KfCFLA&_nc_ss=7b689&oh=00_AQNab5zI9bylivXTCYF_AUt_w02MWqtElN_xpzPjmUtVTg&oe=6ACBFBFA"
+  theme: "dark"
+
+links:
+  - id: "dicebooth"
+    label: "Visita il nostro sito"
+    url: "https://dicebooth.com"
+    icon: "globe"
+  - id: "instagram"
+    preset: "instagram"
+    label: "Seguici su Instagram"
+    url: "https://instagram.com/dicebooth"
