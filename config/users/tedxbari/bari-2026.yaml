@@ -1,0 +1,19 @@
+meta:
+  title: "TEDx Bari 2026"
+  description: "10 ottobre 2026 - Teatro Piccinni, Bari"
+  avatar: "assets/tedxbari_logo.png"
+  theme: "dark"
+
+links:
+  - id: "website_tedxbari_2026"
+    label: "Visita il sito di TEDx Bari 2026"
+    url: "https://tedxbari.eu/edizione-2026"
+    icon: "globe"
+  - id: "ig_tedxbari"
+    preset: "instagram"
+    label: "Segui TEDx Bari su Instagram"
+    url: "https://instagram.com/tedxbari_"
+  - id: "ig_dicebooth"
+    preset: "instagram"
+    label: "Segui dicebooth 🎲 su Instagram"
+    url: "https://instagram.com/dicebooth"

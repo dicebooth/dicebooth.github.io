@@ -1,0 +1,11 @@
+meta:
+  title: "dicebooth"
+  description: "SCATTA. STAMPA. CONDIVIDI.\nSorridi, al resto ci pensiamo noi! 📸"
+  avatar: "assets/dicebooth_logo.png"
+  theme: "dark"
+
+links:
+  - id: "ig_dicebooth"
+    preset: "instagram"
+    label: "Segui dicebooth 🎲 su Instagram"
+    url: "https://instagram.com/dicebooth"

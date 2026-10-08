@@ -31,7 +31,7 @@ export function LinkListPage({ config, user, event }: LinkListPageProps) {
           )}
         </header>
 
-        <section className="w-full flex flex-col gap-3.5 mt-8" aria-label="Links">
+        <section className="w-full flex flex-col gap-3.5 mt-8" aria-label="links">
           {links.map((link) => (
             <LinkButton
               key={link.id}

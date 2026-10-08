@@ -1,0 +1,23 @@
+meta:
+  title: "TEDx Bari"
+  description: ""
+  avatar: "assets/tedxbari_logo.png"
+  theme: "dark"
+
+links:
+  - id: "website_tedxbari"
+    label: "Visita il sito web di TEDx Bari"
+    url: "https://tedxbari.eu"
+    icon: "globe"
+  - id: "ig_tedxbari"
+    preset: "instagram"
+    label: "Segui TEDx Bari su Instagram"
+    url: "https://instagram.com/tedxbari_"
+  - id: "tedxbari2026"
+    label: "TEDx Bari 2026"
+    url: "/tedxbari/bari-2026"
+    icon: "ticket"
+  - id: "ig_dicebooth"
+    preset: "instagram"
+    label: "Segui dicebooth 🎲 su Instagram"
+    url: "https://instagram.com/dicebooth"

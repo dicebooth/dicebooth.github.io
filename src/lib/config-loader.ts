@@ -81,6 +81,100 @@ export function getAllStaticRoutes(): { user: string; event?: string }[] {
   return routes;
 }
 
+const MIME_TYPES: Record<string, string> = {
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".svg": "image/svg+xml",
+  ".webp": "image/webp",
+  ".gif": "image/gif",
+  ".avif": "image/avif",
+  ".ico": "image/x-icon",
+};
+
+/**
+ * Resolves avatar reference:
+ * - If external URL (http/https/data:), returns as-is.
+ * - If local filesystem path (absolute, project-relative, or relative to YAML file),
+ *   converts it to a base64 Data URL so it is fully self-contained and works everywhere
+ *   (Next.js static export, GitHub Pages, etc.).
+ */
+export function resolveAvatar(
+  avatarStr: string | undefined,
+  configFilePath: string
+): string | undefined {
+  if (!avatarStr || typeof avatarStr !== "string") {
+    return undefined;
+  }
+
+  const trimmed = avatarStr.trim();
+  if (!trimmed) {
+    return undefined;
+  }
+
+  // Already an external URL or data URI
+  if (
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://") ||
+    trimmed.startsWith("data:")
+  ) {
+    return trimmed;
+  }
+
+  const cwd = process.cwd();
+  const configDir = path.dirname(configFilePath);
+
+  // Build candidate paths in order of preference
+  const candidates: string[] = [];
+
+  // 1. Direct path as specified (e.g., /Users/... or relative to cwd)
+  candidates.push(path.isAbsolute(trimmed) ? trimmed : path.resolve(cwd, trimmed));
+
+  // 2. If path starts with "/", check relative to project cwd (e.g. "/assets/logo.png" -> "<cwd>/assets/logo.png")
+  if (trimmed.startsWith("/")) {
+    candidates.push(path.join(cwd, trimmed.replace(/^\/+/, "")));
+  }
+
+  // 3. Relative to the YAML configuration file itself
+  candidates.push(path.resolve(configDir, trimmed));
+
+  // 4. In public directory if applicable
+  candidates.push(path.join(cwd, "public", trimmed.replace(/^\/+/, "")));
+
+  // 5. Fallback for absolute paths containing project subpaths (e.g. if an absolute Mac path
+  // is committed and built on Linux CI)
+  for (const knownDir of ["assets", "public", "config"]) {
+    const marker = `${knownDir}/`;
+    const markerIdx = trimmed.indexOf(marker);
+    if (markerIdx !== -1) {
+      candidates.push(path.join(cwd, trimmed.slice(markerIdx)));
+    }
+  }
+
+  // Find the first candidate that exists as a file
+  const matchedPath = candidates.find((cand) => {
+    try {
+      return fs.existsSync(cand) && fs.statSync(cand).isFile();
+    } catch {
+      return false;
+    }
+  });
+
+  if (matchedPath) {
+    try {
+      const ext = path.extname(matchedPath).toLowerCase();
+      const mime = MIME_TYPES[ext] || "image/png";
+      const fileBuffer = fs.readFileSync(matchedPath);
+      return `data:${mime};base64,${fileBuffer.toString("base64")}`;
+    } catch (err) {
+      console.error(`Failed to read avatar file at "${matchedPath}":`, err);
+    }
+  }
+
+  // If no local file was found, return the trimmed path so standard web paths can still attempt to load
+  return trimmed;
+}
+
 /**
  * Loads a LinkList configuration from disk
  */
@@ -110,11 +204,11 @@ export function loadConfig(user: string, event?: string): LinklistConfig | null 
 
     return {
       meta: {
-        title: parsed.meta?.title || "Links",
+        title: parsed.meta?.title || "links",
         description: parsed.meta?.description
           ? parsed.meta.description.replace(/\\n/g, "\n")
           : undefined,
-        avatar: parsed.meta?.avatar,
+        avatar: resolveAvatar(parsed.meta?.avatar, filePath),
         theme: parsed.meta?.theme || "dark",
         ga_id: parsed.meta?.ga_id,
       },

@@ -44,7 +44,7 @@ export async function generateMetadata({
     title: config.meta.title,
     description:
       config.meta.description?.replace(/\n/g, " ").trim() ||
-      `${config.meta.title} Links`,
+      `${config.meta.title} links`,
   };
 }
 

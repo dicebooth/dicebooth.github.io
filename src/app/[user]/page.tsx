@@ -25,7 +25,7 @@ export async function generateMetadata({
   return {
     title: config.meta.title,
     description:
-      config.meta.description?.replace(/\n/g, " ").trim() || `${user}'s Links`,
+      config.meta.description?.replace(/\n/g, " ").trim() || `${user}'s links`,
   };
 }
 

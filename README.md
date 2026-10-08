@@ -1,4 +1,4 @@
-# Dicebooth Links 🎲🔗
+# dicebooth links 🎲🔗
 
 Web application statica multi-tenant basata su architettura **Config-as-Code** con supporto a molteplici utenti, eventi/pagine dedicate, Brand Presets ufficiali e tracciamento Google Analytics 4 (GA4).
 

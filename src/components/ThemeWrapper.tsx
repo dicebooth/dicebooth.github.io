@@ -46,7 +46,7 @@ export function ThemeWrapper({ theme = "dark", children }: ThemeWrapperProps) {
 
       {/* Subtle footer */}
       <footer className="w-full py-6 text-center text-xs opacity-50 z-10 select-none">
-        <p>© {new Date().getFullYear()} • Dicebooth Links</p>
+        <p>© {new Date().getFullYear()} • dicebooth links</p>
       </footer>
     </div>
   );
