@@ -15,7 +15,7 @@ links:
     url: "https://instagram.com/tedxbari_"
   - id: "tedxbari2026"
     label: "TEDx Bari 2026"
-    url: "/tedxbari/bari-2026"
+    url: "./2026"
     icon: "ticket"
   - id: "ig_dicebooth"
     preset: "instagram"
