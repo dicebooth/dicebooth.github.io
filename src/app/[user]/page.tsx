@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getAllUserSlugs, loadConfig } from "@/lib/config-loader";
 import { LinkListPage } from "@/components/LinkListPage";
 
+export const dynamicParams = false;
+
 interface UserPageProps {
   params: Promise<{ user: string }>;
 }

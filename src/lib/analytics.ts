@@ -37,18 +37,19 @@ export function trackLinkClick({
     transport_type: "beacon",
   };
 
-  if (typeof window.gtag === "function") {
-    window.gtag("event", "linklist_click", eventParams);
-  } else {
-    // Fallback or dev log
-    if (process.env.NODE_ENV !== "production") {
-      console.log("[GA4 Event linklist_click]", eventParams);
-    }
-    if (Array.isArray(window.dataLayer)) {
-      window.dataLayer.push({
-        event: "linklist_click",
-        ...eventParams,
-      });
-    }
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[GA4 Event linklist_click]", eventParams);
   }
+
+  // Ensure dataLayer exists
+  window.dataLayer = window.dataLayer || [];
+
+  // Ensure window.gtag queue function exists even if gtag.js is still loading
+  if (typeof window.gtag !== "function") {
+    window.gtag = function () {
+      (window.dataLayer as unknown[]).push(arguments);
+    };
+  }
+
+  window.gtag("event", "linklist_click", eventParams);
 }

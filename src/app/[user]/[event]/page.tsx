@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getAllUserSlugs, getUserEvents, loadConfig } from "@/lib/config-loader";
 import { LinkListPage } from "@/components/LinkListPage";
 
+export const dynamicParams = false;
+
 interface UserEventPageProps {
   params: Promise<{ user: string; event: string }>;
 }
