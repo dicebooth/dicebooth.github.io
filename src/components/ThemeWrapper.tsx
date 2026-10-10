@@ -1,4 +1,5 @@
 import React from "react";
+import Script from "next/script";
 
 export interface ThemeWrapperProps {
   theme?: "dark" | "light" | "minimal";
@@ -45,8 +46,26 @@ export function ThemeWrapper({ theme = "dark", children }: ThemeWrapperProps) {
       </main>
 
       {/* Subtle footer */}
-      <footer className="w-full py-6 text-center text-xs opacity-50 z-10 select-none">
-        <p>© {new Date().getFullYear()} • dicebooth links</p>
+      <footer className="w-full py-6 text-center text-xs opacity-60 z-10 flex flex-col items-center gap-2">
+        <div className="flex items-center justify-center gap-3">
+          <a
+            href="https://www.iubenda.com/privacy-policy/56987445"
+            className="iubenda-white iubenda-noiframe iubenda-embed hover:underline transition-opacity"
+            title="Privacy Policy"
+          >
+            Privacy Policy
+          </a>
+          <span>•</span>
+          <a
+            href="https://www.iubenda.com/privacy-policy/56987445/cookie-policy"
+            className="iubenda-white iubenda-noiframe iubenda-embed hover:underline transition-opacity"
+            title="Cookie Policy"
+          >
+            Cookie Policy
+          </a>
+        </div>
+        <p className="opacity-80">© {new Date().getFullYear()} • dicebooth links</p>
+        <Script src="https://cdn.iubenda.com/iubenda.js" strategy="lazyOnload" />
       </footer>
     </div>
   );
