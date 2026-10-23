@@ -15,6 +15,7 @@ export interface LinkItem {
   icon?: string;
   highlight?: boolean;
   active?: boolean;
+  requires_photo?: boolean;
   style?: LinkStyleConfig;
 }
 

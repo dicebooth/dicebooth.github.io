@@ -2,7 +2,7 @@ import React from "react";
 import { LinklistConfig } from "@/lib/config-loader";
 import { ThemeWrapper } from "@/components/ThemeWrapper";
 import { Avatar } from "@/components/Avatar";
-import { LinkButton } from "@/components/LinkButton";
+import { LinksSection } from "@/components/LinksSection";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 export interface LinkListPageProps {
@@ -31,22 +31,12 @@ export function LinkListPage({ config, user, event }: LinkListPageProps) {
           )}
         </header>
 
-        <section className="w-full flex flex-col gap-3.5 mt-8" aria-label="links">
-          {links.map((link) => (
-            <LinkButton
-              key={link.id}
-              link={link}
-              user={user}
-              event={currentEvent}
-              theme={meta.theme}
-            />
-          ))}
-          {links.length === 0 && (
-            <p className="text-center text-sm opacity-50 py-8">
-              Nessun collegamento disponibile al momento.
-            </p>
-          )}
-        </section>
+        <LinksSection
+          links={links}
+          user={user}
+          event={currentEvent}
+          theme={meta.theme}
+        />
       </ThemeWrapper>
     </>
   );

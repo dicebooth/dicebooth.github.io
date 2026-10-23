@@ -86,16 +86,21 @@ meta:
   avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200"
   theme: "dark" # dark | light | minimal
   ga_id: "G-XXXXXXXXXX" # Facoltativo (override di NEXT_PUBLIC_GA_ID)
-
 links:
-  # 1. Pulsante Custom con evidenziazione
+  # 1. Pulsante Download Foto Dinamico (mostrato solo se è presente il parametro GET ?photo=<id>)
+  - id: "photo_download"
+    label: "Scarica la tua foto 📸"
+    url: "https://example.com/download/{photo}" # supporta {photo} o {id}
+    icon: "download"
+
+  # 2. Pulsante Custom con evidenziazione
   - id: "buy_ticket"
     label: "Biglietti Ufficiali Rockfest"
     url: "https://ticket.example.com/mario"
     icon: "ticket"
     highlight: true
 
-  # 2. Pulsante Custom con colori specifici
+  # 3. Pulsante Custom con colori specifici
   - id: "stage_map"
     label: "Mappa dei Palchi e Stand"
     url: "https://rockfest.com/maps"
@@ -104,7 +109,7 @@ links:
       bg_color: "#18181b"
       text_color: "#f4f4f5"
 
-  # 3. Pulsanti Brand Preset Ufficiali
+  # 4. Pulsanti Brand Preset Ufficiali
   - id: "spotify_playlist"
     preset: "spotify"
     url: "https://open.spotify.com/playlist/xyz"
@@ -123,6 +128,16 @@ links:
     url: "mailto:booking@mario.test"
     icon: "mail"
 ```
+
+### 📸 Link Dinamico di Download Foto tramite Parametro GET (`?photo=<id>`)
+
+È possibile definire link che vengono **mostrati esclusivamente** quando l'utente atterra sulla pagina con il parametro GET `?photo=...` (ad esempio tramite scansione di un QR code stampato dalla photobooth):
+
+- **Placeholder supportati**: `{photo}` e `{id}` sia nel campo `url` che nel campo `label`.
+- **Comportamento**:
+  - Se il parametro `?photo=XYZ` è presente nella query string dell'URL (es. `https://links.dicebooth.com/nome_cliente/nome_evento?photo=DSC_1234`), il pulsante viene inserito con l'URL e la label valorizzati.
+  - Se il parametro `photo` non è presente o è vuoto, il pulsante viene automaticamente **nascosto**.
+  - Il tracciamento su Google Analytics 4 registra l'evento con il `destination_url` effettivo contenente l'ID della foto.
 
 ---
 

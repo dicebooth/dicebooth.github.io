@@ -16,6 +16,9 @@ import {
   Music,
   Video,
   Share2,
+  Download,
+  Camera,
+  Image,
   LucideProps,
 } from "lucide-react";
 
@@ -48,6 +51,11 @@ const ICON_MAP: Record<string, React.FC<LucideProps>> = {
   share: Share2,
   link: ExternalLink,
   "external-link": ExternalLink,
+  download: Download,
+  camera: Camera,
+  photo: Camera,
+  image: Image,
+  picture: Image,
 };
 
 export function IconRenderer({ name, className = "w-5 h-5" }: IconRendererProps) {
