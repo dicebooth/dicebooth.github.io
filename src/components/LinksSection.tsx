@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { LinkItem } from "@/lib/config-loader";
 import { LinkButton } from "@/components/LinkButton";
@@ -20,13 +20,7 @@ function LinksSectionInner({
   theme,
 }: LinksSectionProps) {
   const searchParams = useSearchParams();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const photoParam = mounted ? searchParams.get("photo")?.trim() || null : null;
+  const photoParam = searchParams.get("photo")?.trim() || null;
   const resolvedLinks = resolveLinksWithPhotoParam(links, photoParam);
 
   return (
